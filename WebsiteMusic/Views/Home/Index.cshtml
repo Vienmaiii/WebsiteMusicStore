@@ -1,0 +1,115 @@
+﻿
+<!-- BEGIN SLIDER -->
+<div class="page-slider margin-bottom-35">
+    <div id="carousel-example-generic" class="carousel slide carousel-slider">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <!-- First slide -->
+            <div class="item carousel-item-four active">
+                <div class="container">
+                    <div class="carousel-position-four text-center">
+                        <h2 class="margin-bottom-20 animate-delay carousel-title-v3 border-bottom-title text-uppercase" data-animation="animated fadeInDown">
+                            <span class="ql-color-white">KVT Store</span>
+                        </h2>
+                        <p class="carousel-subtitle-v2" data-animation="animated fadeInUp">
+                            Chuyên cung cấp sẳn phẩm chất lượng <br />
+                            Từ nhiều thương hiệu nổi tiếng.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Second slide -->
+            <div class="item carousel-item-five">
+                <div class="container">
+                    <div class="carousel-position-four text-center">
+                        <h2 class="margin-bottom-20 animate-delay carousel-title-v3 border-bottom-title text-uppercase" data-animation="animated fadeInDown">
+                            <span class="ql-color-white">KVT Store</span>
+                        </h2>
+                        <p class="carousel-subtitle-v2" data-animation="animated fadeInUp">
+                            Chuyên cung cấp sẳn phẩm chất lượng <br />
+                            Từ nhiều thương hiệu nổi tiếng.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Third slide -->
+            <div class="item carousel-item-six">
+                <div class="container">
+                    <div class="carousel-position-four text-center">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control carousel-control-shop" href="#carousel-example-generic" role="button" data-slide="prev">
+            <i class="fa fa-angle-left" aria-hidden="true"></i>
+        </a>
+        <a class="right carousel-control carousel-control-shop" href="#carousel-example-generic" role="button" data-slide="next">
+            <i class="fa fa-angle-right" aria-hidden="true"></i>
+        </a>
+    </div>
+</div>
+<!-- END SLIDER -->
+
+<div class="main">
+    <div class="container">
+        <!-- BEGIN SALE PRODUCT & NEW ARRIVALS -->
+        <div class="row margin-bottom-40">
+            <!-- BEGIN SALE PRODUCT -->
+            @*<div class="col-md-12 sale-product">
+                <h2>Sản phẩm bán chạy</h2>
+                <div class="owl-carousel owl-carousel5">
+
+                    @if (Model != null )
+                    {
+                        foreach (var item in Model.BestSellers)
+                        {
+                            string url = $"/{item.Alias}-{item.ProductId}.html";
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                <div class="product-item">
+                                    <div class="pi-img-wrapper">
+                                        <img src="~/images/products/@item.Thumb" class="img-responsive" alt="@item.Title">
+                                        <div>
+                                            <a href="~/images/products/@item.Thumb" class="btn btn-default fancybox-button">Zoom</a>
+                                            <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                                        </div>
+                                    </div>
+                                    <h3><a href="@url">@item.ProductName</a></h3>
+                                    <div class="pi-price">@item.Price</div>
+                                    <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+                                </div>
+                            </div>
+                        }
+                    }
+
+                </div>
+            </div>*@
+            <!-- END SALE PRODUCT -->
+        </div>
+        <!-- END SALE PRODUCT & NEW ARRIVALS -->
+    </div>
+</div>
+<!-- BEGIN BRANDS -->
+<div class="brands">
+    <div class="container">
+        <div class="owl-carousel owl-carousel6-brands">
+            <a href="shop-product-list.html"><img src="~/assets/pages/img/brands/Logo1.png" alt="Ibanez" title="Ibanez"> </a>
+            <a href="shop-product-list.html"><img src="~/assets/pages/img/brands/Logo2.jpg" alt="Fender" title="Fender"></a>
+            <a href="shop-product-list.html"><img src="~/assets/pages/img/brands/Logo3.png" alt="JackSon" title="JackSon"></a>
+            <a href="shop-product-list.html"><img src="~/assets/pages/img/brands/Logo4.png" alt="ESP" title="ESP"></a>
+            <a href="shop-product-list.html"><img src="~/assets/pages/img/brands/Logo5.png" alt="Gibson" title="Gibson"></a>
+        </div>
+    </div>
+</div>
+<!-- END BRANDS -->

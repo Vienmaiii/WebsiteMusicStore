@@ -1,0 +1,145 @@
+﻿@model List<WebsiteMusic.ModelViews.CartItem>
+@{
+    ViewData["Title"] = "Xem giỏ hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var returnUrl = Context.Request.Query["ReturnUrl"];
+}
+
+
+<div class="main">
+    <div class="container">
+        <!-- BEGIN SIDEBAR & CONTENT -->
+        <div class="row margin-bottom-40">
+            <!-- BEGIN CONTENT -->
+            <div class="col-md-12 col-sm-12">
+                <h1>Thông tin giỏ hàng</h1>
+                <div class="goods-page">
+                    <div class="goods-data clearfix">
+                        <div class="table-wrapper-responsive">
+                            <table summary="Shopping cart">
+                                <tr>
+                                    <th class="goods-page-image">Hình ảnh</th>
+                                    <th class="goods-page-description">Thông tin</th>
+                                    <th class="goods-page-quantity">Số lượng</th>
+                                    <th class="goods-page-price">Giá</th>
+                                    <th class="goods-page-total" colspan="2">Tổng</th>
+                                </tr>
+
+                                @if (Model != null && Model.Count() > 0)
+                                {
+                                    foreach (var item in Model)
+                                    {
+
+                                        <tr>
+
+                                            <td class="goods-page-image">
+                                                <a href="javascript:void(0)">
+                                                    <img src="~/images/products/@item.product.Thumb" alt="@item.product.Title">
+                                                </a>
+                                            </td>
+                                            <td class="goods-page-description">
+                                                <h3><a href="javascript:;">@item.product.ProductName</a></h3>
+
+
+                                            </td>
+
+                                            <td class="goods-page-quantity">
+                                                <div class="product-quantity">
+                                                    <strong><span>@item.amount</span></strong>
+                                                </div>
+                                            </td>
+                                            <td class="goods-page-price">
+                                                <strong><span>@item.product.Price.Value.ToString("#,##0") VNĐ</span></strong>
+                                            </td>
+                                            <td class="goods-page-price">
+                                                <strong><span>@item.TotalMoney.ToString("#,##0") VNĐ</span></strong>
+                                            </td>
+
+                                            <td class="product_remove">
+                                                <input type="button" value="X" class="removecart btn btn-primary" data-mahh="@item.product.ProductId" />
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </table>
+                        </div>
+
+                        <div class="shopping-total">
+                            <h2>Tổng đơn hàng</h2>
+                            <ul>
+                                <li class="shopping-total-price">
+                                    <em>Thành tiền</em>
+                                    <strong class="price"><span>@Model.Sum(x => x.TotalMoney).ToString("#,##0") VNĐ</span></strong>
+                                </li>
+
+                            </ul>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a href="/checkout.html" class="btn btn-secondary btn-primary-hover">Thanh toán</a>
+                            }
+                            else
+                            {
+                            <a href="/dang-nhap.html?returnUrl=/checkout.html" class="btn btn-secondary btn-primary-hover">Thanh toán</a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END SIDEBAR & CONTENT -->
+    </div>
+</div>
+
+
+
+@section Scripts{
+    <script>
+        $(function () {
+            function loadHeaderCart() {
+                $('#miniCart').load("/AjaxContent/HeaderCart");
+                $('#numberCart').load("/AjaxContent/NumberCart");
+            }
+            $(".removecart").click(function () {
+                var productid = $(this).attr("data-mahh");
+                $.ajax({
+                    url: "api/cart/remove",
+                    type: "POST",
+                    dataType: "JSON",
+                    data: { productID: productid },
+                    success: function (result) {
+                        if (result.success) {
+                            loadHeaderCart();//Reload lai gio hang
+                            location.reload();
+                        }
+                    },
+                    error: function (rs) {
+                        alert("Remove Cart Error !")
+                    }
+                });
+            });
+            $(".cartItem").click(function () {
+                var productid = $(this).attr("data-mahh");
+                var soluong = parseInt($(this).val());
+                $.ajax({
+                    url: "api/cart/update",
+                    type: "POST",
+                    dataType: "JSON",
+                    data: {
+                        productID: productid,
+                        amount: soluong
+                    },
+                    success: function (result) {
+                        if (result.success) {
+                            loadHeaderCart();//Reload lai gio hang
+                            window.location = 'cart.html';
+                        }
+                    },
+                    error: function (rs) {
+                        alert("Cập nhật Cart Error !")
+                    }
+                });
+            });
+        });
+    </script>
+}

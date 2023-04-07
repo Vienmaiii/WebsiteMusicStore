@@ -1,0 +1,222 @@
+﻿@using PagedList.Core.Mvc
+@model PagedList.Core.IPagedList<WebsiteMusic.Models.Product>
+
+@{
+    int CurrentPage = ViewBag.CurrentPage;
+    ViewData["Title"] = "Danh sách sản phẩm" + CurrentPage;
+    List<Product> lsProducts = ViewBag.SanPham;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="title-wrapper">
+    <div class="container">
+        <div class="container-inner">
+            <h1><span>KTV Store</span> Danh sách sản phẩm</h1>
+            <em>Hơn 4000 mặt hàng có sẵn ở đây</em>
+        </div>
+    </div>
+</div>
+
+<div class="main">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="">Store</a></li>
+            <li class="active">Danh sách sản phẩm</li>
+        </ul>
+        <!-- BEGIN SIDEBAR & CONTENT -->
+        <div class="row margin-bottom-40">
+            <!-- BEGIN SIDEBAR -->
+            <div class="sidebar col-md-3 col-sm-5">
+                <ul class="list-group margin-bottom-25 sidebar-menu">
+                    <li class="list-group-item clearfix dropdown active">
+                        <a href="javascript:void(0);" class="collapsed">
+                            <i class="fa fa-angle-right"></i>
+                            Guitar
+
+                        </a>
+                        <ul class="dropdown-menu" style="display:block;">
+                            <li class="list-group-item dropdown clearfix active">
+                                <a href="" class="collapsed"><i class="fa fa-angle-right"></i> Guitar thùng </a>
+                                <ul class="dropdown-menu" style="display:block;">
+                                    <li class="list-group-item dropdown clearfix">
+                                        <a href="/danhmuc/guitar"><i class="fa fa-angle-right"></i> Guitar Classic </a>
+                                    </li>
+                                    <li class="list-group-item dropdown clearfix">
+                                        <a href="javascript:void(0);"><i class="fa fa-angle-right"></i> Guitar Acoustic </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Guitar điện</a></li>
+                        </ul>
+                    </li>
+                    <li class="list-group-item clearfix dropdown active">
+                        <a href="javascript:void(0);" class="collapsed">
+                            <i class="fa fa-angle-right"></i>
+                            Piano
+
+                        </a>
+                        <ul class="dropdown-menu" style="display:block;">
+
+                            <li><a href="/danhmuc/piano"><i class="fa fa-angle-right"></i> Piano Cơ</a></li>
+                            <li><a href="/danhmuc/piano"><i class="fa fa-angle-right"></i> Piano điện</a></li>
+                        </ul>
+                    </li>
+                    <li class="list-group-item clearfix dropdown active">
+                        <a href="javascript:void(0);" class="collapsed">
+                            <i class="fa fa-angle-right"></i>
+                            Phụ kiện
+
+                        </a>
+                        <ul class="dropdown-menu" style="display:block;">
+                            <li><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Phụ kiện Guitar</a></li>
+                            <li><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Phụ kiện Piano</a></li>
+                            <li><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Khác</a></li>
+                        </ul>
+                    </li>
+                    <li class="list-group-item clearfix dropdown active">
+                        <a href="javascript:void(0);" class="collapsed">
+                            <i class="fa fa-angle-right"></i>
+                            Trống
+
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="sidebar-filter margin-bottom-25">
+                    <h2>Tìm kiếm theo giá tiền</h2>
+                    <div class="checkbox-list">
+                        <label><input type="checkbox"> 0 - 1.000.000</label>
+                        <label><input type="checkbox"> 1.000.000 - 5.000.000</label>
+                        <label><input type="checkbox"> Hơn 5.000.000 </label>
+                    </div>
+
+
+                    <div id="slider-range"></div>
+                </div>
+
+
+            </div>
+            <!-- END SIDEBAR -->
+            <!-- BEGIN CONTENT -->
+            <div class="col-md-9 col-sm-7">
+                <div class="row list-view-sorting clearfix">
+                    <div class="col-md-2 col-sm-2 list-view">
+                        <a href="javascript:;"><i class="fa fa-th-large"></i></a>
+                        <a href="javascript:;"><i class="fa fa-th-list"></i></a>
+                    </div>
+                    <div class="col-md-10 col-sm-10">
+                        <div class="pull-right">
+                            <label class="control-label">Sort&nbsp;By:</label>
+                            <select class="form-control input-sm">
+                                <option value="#?sort=p.sort_order&amp;order=ASC" selected="selected">Default</option>
+                                <option value="#?sort=p.price&amp;order=ASC">Giá (Thấp &gt; Cao)</option>
+                                <option value="#?sort=p.price&amp;order=DESC">Giá (Cao &gt; Thấp)</option>
+
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!-- BEGIN PRODUCT LIST -->
+                <div class="row product-list">
+                    @if (Model != null && Model.Count() > 0)
+                    {
+                        foreach (var item in Model)
+                        {
+                            if (@item.UnitsInStock.Value > 0)
+                            {
+                                string url = $"/{item.Alias}-{item.ProductId}.html";
+                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                    <div class="product-item">
+                                        <div class="pi-img-wrapper">
+                                            <img src="~/images/products/@item.Thumb" class="img-responsive" alt="@item.Title" style="width : 237px; height : 130px">
+                                            <div>
+                                                <a href="~/images/products/@item.Thumb" class="btn btn-default fancybox-button">Zoom</a>
+                                                <a href="@url" class="btn btn-default fancybox-fast-view">View</a>
+                                            </div>
+                                        </div>
+                                        <h3><a href="@url">@item.ProductName</a></h3>
+                                        <div class="pi-price">@item.Price.Value.ToString("#,##0") VNĐ</div>
+                                        @*<div class="add-to-cart">
+                                                <a href="javascript:;" class="btn btn-default add2cart">Thêm</a>
+                                                <input hidden asp-for="product" />
+                                            </div>*@
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+
+                    
+                </div>
+                <!-- END CONTENT -->
+            </div>
+            <!-- END SIDEBAR & CONTENT -->
+            <div aria-label="Page navigation exemple">
+                <ul class="pagination">
+                    <pager class="pager-container" list="@Model" asp-controller="Product" asp-route-CatID="@ViewBag.CurrentCateID" asp-action="Index" />
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $(function () {
+                $(".add-to-cart").click(function () {
+                    var productid = $('#ProductId').val();
+                    var soLuong = $('#txtsoLuong').val();
+                    $.ajax({
+                        url: '/api/cart/add',
+                        type: "POST",
+                        dataType: "JSON",
+                        data: {
+                            productID: productid,
+                            amount: soLuong
+                        },
+                        success: function (response) {
+                            if (response.result == 'Redirect') {
+                                window.location = response.url;
+                            }
+                            else {
+                                loadHeaderCart(); //Add Product success
+                                location.reload();
+                            }
+                            console.log(response); // log to the console to see whether it worked
+                        },
+                        error: function (error) {
+                            alert("There was an error posting the data to the server: " + error.responseText);
+                        }
+                    });
+                });
+
+                //$(".removecart").click(function () {
+                //    var productid = $(this).attr("data-productid");
+                //    $.ajax({
+                //        url: "api/cart/remove",
+                //        type: "POST",
+                //        dataType: "JSON",
+                //        data: { productID: productid },
+                //        success: function (result) {
+                //            if (result.success) {
+                //                loadHeaderCart();//Reload lai gio hang
+                //                location.reload();
+                //            }
+                //        },
+                //        error: function (rs) {
+                //            alert("Remove Cart Error !")
+                //        }
+                //    });
+                //});
+            });
+            function loadHeaderCart() {
+                $('#miniCart').load("/AjaxContent/HeaderCart");
+                $('#numberCart').load("/AjaxContent/NumberCart");
+            }
+        });
+    </script>
+
+}

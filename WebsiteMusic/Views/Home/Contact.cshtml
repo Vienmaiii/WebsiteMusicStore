@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewData["Title"] = "Thông tin liên hệ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main">
+    <div class="container">
+      <!-- BEGIN SIDEBAR & CONTENT -->
+        <div class="row margin-bottom-40">
+            
+            <!-- BEGIN CONTENT -->
+            <div class="col-md-9 col-sm-9">
+                <h1>Liên hệ với chúng tôi</h1>
+                <div class="content-page">
+                    <h2>Gửi thông tin của bạn để được tư vấn</h2>
+                    <p>Chúng tôi sẽ cố gắng liên lạc với bạn sớm nhất.</p>
+
+                    <!-- BEGIN FORM-->
+                    <form action="#" class="default-form" role="form">
+                        <div class="form-group">
+                            <label for="name">Tên của bạn</label>
+                            <input type="text" class="form-control" id="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email <span class="require">*</span></label>
+                            <input type="text" class="form-control" id="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Nội dung cần tư vấn</label>
+                            <textarea class="form-control" rows="8" id="message"></textarea>
+                        </div>
+                        <div class="padding-top-20">
+                            <button type="submit" class="btn btn-primary">Gửi</button>
+                        </div>
+                    </form>
+                    <!-- END FORM-->
+                </div>
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END SIDEBAR & CONTENT -->
+    </div>
+</div>

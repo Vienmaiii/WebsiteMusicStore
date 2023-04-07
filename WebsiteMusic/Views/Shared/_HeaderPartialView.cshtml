@@ -1,0 +1,156 @@
+﻿<!-- END BEGIN STYLE CUSTOMIZER -->
+<!-- BEGIN TOP BAR -->
+<div class="pre-header">
+    <div class="container">
+        <div class="row">
+            <!-- BEGIN TOP BAR LEFT PART -->
+            <div class="col-md-6 col-sm-6 additional-shop-info">
+                <ul class="list-unstyled list-inline">
+                    <li><i class="fa fa-phone"></i><span>Hotline: +84 909763107</span></li>
+                </ul>
+            </div>
+            <!-- END TOP BAR LEFT PART -->
+            <!-- BEGIN TOP BAR MENU -->
+            <div class="col-md-6 col-sm-6 additional-nav">
+                <ul class="list-unstyled list-inline pull-right">
+
+                    <li><a href="shop-wishlist.html">Sản phẩm yêu thích</a></li>
+                    <li><a href="shop-checkout.html">Checkout</a></li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li><a href="/tai-khoan-cua-toi.html">Tài khoản</a></li> }
+                    else
+                    {
+                        <li><a href="/dang-nhap.html">Đăng nhập</a></li>
+                        <li><a href="/dang-ky.html">Đăng ký</a></li>}
+                </ul>
+            </div>
+            <!-- END TOP BAR MENU -->
+        </div>
+    </div>
+</div>
+<!-- END TOP BAR -->
+<!-- BEGIN HEADER -->
+<div class="header">
+    <div class="container">
+        <a class="site-logo" asp-controller="Home" asp-action="Index"><img src="~/assets/corporate/img/logos/logo11.jpg" style="width: 170px " alt="Metronic Shop UI"></a>
+
+        <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
+
+        <!-- BEGIN CART -->
+        <div class="top-cart-block">
+            @await Component.InvokeAsync("NumberCart")
+            <i class="fa fa-shopping-cart"></i>
+            @await Component.InvokeAsync("HeaderCart")
+        </div>
+        <!--END CART -->
+        <!-- BEGIN NAVIGATION -->
+        <div class="header-navigation">
+            <ul>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">Có gì mới ?</a>
+
+                    <!-- BEGIN DROPDOWN MENU -->
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-submenu">
+                            <a href="shop-product-list.html">Hàng mới về <i class="fa fa-angle-right"></i></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="shop-product-list.html">Second Level Link</a></li>
+                                <li><a href="shop-product-list.html">Second Level Link</a></li>
+                              
+                            </ul>
+                        </li>
+                        <li><a href="shop-product-list.html">Hàng sắp về</a></li>
+                    </ul>
+                    <!-- END DROPDOWN MENU -->
+                </li>
+                <li class="dropdown dropdown-megamenu">
+                    <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
+                        Danh mục sản phẩm
+
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <div class="header-navigation-content">
+                                <div class="row">
+                                    <div class="col-md-4 header-navigation-col">
+                                        <h4>Guitar</h4>
+                                        <ul>
+                                            <li><a href="/danhmuc/guitar"> Guitar thùng</a></li>
+                                            <li><a href="/danhmuc/guitar">Guitar điện</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-4 header-navigation-col">
+                                        <h4>Piano</h4>
+                                        <ul>
+                                            <li><a href="/danhmuc/piano">Piano cơ</a></li>
+                                            <li><a href="/danhmuc/piano">Piano điện</a></li>
+                                        </ul>
+
+                                        
+                                    </div>
+                                    <div class="col-md-4 header-navigation-col">
+                                       
+
+                                        <h4>Phụ kiện</h4>
+                                        <ul>
+                                            <li><a href="/danhmuc/phukien">Phụ kiện Guitar</a></li>
+                                            <li><a href="/danhmuc/phukien">Phụ kiện Piano</a></li>
+                                            <li><a href="/danhmuc/phukien">Khác</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-12 nav-brands">
+                                        <ul>
+                                            <li><a href="shop-product-list.html"><img src="~/assets/pages/img/brands/Logo1.png" alt="Ibanez" title="Ibanez"> </a></li>
+                                            <li><a href="shop-product-list.html"><img src="~/assets/pages/img/brands/Logo2.jpg" alt="Fender" title="Fender"></a></li>
+                                            <li><a href="shop-product-list.html"><img src="~/assets/pages/img/brands/Logo3.png" alt="JackSon" title="JackSon"></a></li>
+                                            <li><a href="shop-product-list.html"><img src="~/assets/pages/img/brands/Logo4.png" alt="ESP" title="ESP"></a></li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li><a asp-controller="Product" asp-action="index">Sản phẩm</a></li>
+
+                <li class="dropdown active">
+                    <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
+                        Về chúng tôi
+
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li><a href="shop-contacts.html">Blog</a></li>
+                        <li><a asp-controller="Home" asp-action="Contact">Liên hệ</a></li>
+                        <li><a asp-controller="Home" asp-action="Address">Địa chỉ</a></li>
+                        <li><a asp-controller="Home" asp-action="About">Về chúng tôi</a></li>
+                        
+                    </ul>
+                </li>
+
+
+
+                <!-- BEGIN TOP SEARCH -->
+                <li class="menu-search">
+                    <span class="sep"></span>
+                    <i class="fa fa-search search-btn"></i>
+                    <div class="search-box">
+                        <form action="#">
+                            <div class="input-group">
+                                <input type="text" placeholder="Search" class="form-control">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-primary" type="submit">Search</button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                </li>
+                <!-- END TOP SEARCH -->
+            </ul>
+        </div>
+        <!-- END NAVIGATION -->
+    </div>
+</div>
+<!-- Header END -->
